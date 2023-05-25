@@ -35,8 +35,8 @@ public class Get05 extends HerokuAppBaseUrl {
         Response response = given(spec).accept(ContentType.JSON).get("{first}");
         response.prettyPrint();
 
-        response.then().
-                statusCode(200).body("bookingid",hasSize(greaterThan(0)));
+
+        response.then().statusCode(200).body("bookingid",hasSize(greaterThan(0)));
 
         //yada
         assertTrue(response.asString().contains("bookingid"));
