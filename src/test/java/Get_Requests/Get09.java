@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static io.restassured.RestAssured.given;
+import static org.junit.Assert.assertEquals;
 
 public class Get09 extends HerokuAppBaseUrl {
 
@@ -34,7 +35,7 @@ public class Get09 extends HerokuAppBaseUrl {
     @Test
     public void get09() {
         //set the url
-        spec.pathParams("first", "booking", "second", 798);
+        spec.pathParams("first", "booking", "second", 1087);
 
         //set the expected data
         Map<String, String> bookingdatesMap = new HashMap<>(); //Önce inner map oluşturulur
@@ -52,5 +53,15 @@ public class Get09 extends HerokuAppBaseUrl {
         //send the request and get the response
         Response response = given(spec).get("{first}/{second}");
         response.prettyPrint();
+
+        //Do assertion
+        Map<String,Object> actualData = response.as(HashMap.class); //De-Serialization
+        assertEquals(200,response.statusCode());
+        assertEquals(expectedData.get("firstname"),actualData.get("firstname"));
+        assertEquals(expectedData.get("lastname"),actualData.get("lastname"));
+        assertEquals(expectedData.get("totalprice"),actualData.get("totalprice"));
+        assertEquals(expectedData.get("depositpaid"),actualData.get("depositpaid"));
+        assertEquals(expectedData.get("bookingdates"),actualData.get("bookingdates"));
+        assertEquals(expectedData.get("additionalneeds"),actualData.get("additionalneeds"));
     }
 }
