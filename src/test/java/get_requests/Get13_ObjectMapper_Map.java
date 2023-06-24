@@ -1,9 +1,8 @@
-package Get_Requests;
+package get_requests;
 
 import base_urls.JsonPlaceHolderBaseUrl;
 import io.restassured.response.Response;
 import org.junit.Test;
-import test_data.JsonPlaceHolderTestData;
 import utils.ObjectMapperUtils;
 
 import java.util.HashMap;

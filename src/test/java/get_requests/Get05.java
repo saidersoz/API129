@@ -1,10 +1,8 @@
-package Get_Requests;
+package get_requests;
 
 import base_urls.HerokuAppBaseUrl;
-import base_urls.JsonPlaceHolderBaseUrl;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import org.hamcrest.Matchers;
 import org.junit.Test;
 
 import static io.restassured.RestAssured.given;

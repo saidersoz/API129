@@ -1,6 +1,7 @@
 package herokuapp_smoketest;
 
-import base_urls.HerOkuAppBaseUrl;
+
+import base_urls.HerokuAppBaseUrl;
 import io.restassured.response.Response;
 import org.junit.Test;
 import pojos.BookingDatesPojo;
@@ -11,7 +12,7 @@ import utils.ObjectMapperUtils;
 import static io.restassured.RestAssured.given;
 import static org.junit.Assert.assertEquals;
 
-public class C01_PostRequest extends HerOkuAppBaseUrl {
+public class C01_PostRequest extends HerokuAppBaseUrl {
     /*
     Given
         https://restful-booker.herokuapp.com/booking

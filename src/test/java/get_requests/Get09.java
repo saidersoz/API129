@@ -1,4 +1,4 @@
-package Get_Requests;
+package get_requests;
 
 import base_urls.HerokuAppBaseUrl;
 import io.restassured.response.Response;

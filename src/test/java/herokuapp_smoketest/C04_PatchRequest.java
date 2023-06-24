@@ -1,9 +1,10 @@
 package herokuapp_smoketest;
 
-import base_urls.HerOkuAppBaseUrl;
+
+import base_urls.HerokuAppBaseUrl;
 import org.junit.Test;
 
-public class C04_PatchRequest extends HerOkuAppBaseUrl {
+public class C04_PatchRequest extends HerokuAppBaseUrl {
     /*
     Given
         https://restful-booker.herokuapp.com/booking/:id

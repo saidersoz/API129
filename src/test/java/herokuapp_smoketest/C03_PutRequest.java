@@ -1,6 +1,6 @@
 package herokuapp_smoketest;
 
-import base_urls.HerOkuAppBaseUrl;
+import base_urls.HerokuAppBaseUrl;
 import io.restassured.response.Response;
 import org.junit.Test;
 import pojos.BookingDatesPojo;
@@ -11,7 +11,7 @@ import static herokuapp_smoketest.C01_PostRequest.bookingId;
 import static io.restassured.RestAssured.given;
 import static org.junit.Assert.assertEquals;
 
-public class C03_PutRequest extends HerOkuAppBaseUrl {
+public class C03_PutRequest extends HerokuAppBaseUrl {
     /*
     Given
         https://restful-booker.herokuapp.com/booking/:id

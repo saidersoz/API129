@@ -1,6 +1,7 @@
 package get_requests;
 
-import base_urls.HerOkuAppBaseUrl;
+
+import base_urls.HerokuAppBaseUrl;
 import io.restassured.response.Response;
 import org.junit.Test;
 import pojos.BookingDatesPojo;
@@ -9,7 +10,7 @@ import pojos.BookingPojo;
 import static io.restassured.RestAssured.given;
 import static org.junit.Assert.assertEquals;
 
-public class Get11 extends HerOkuAppBaseUrl {
+public class Get11 extends HerokuAppBaseUrl {
         /*
         Given
             https://restful-booker.herokuapp.com/booking/535
