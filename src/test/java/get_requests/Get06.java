@@ -84,7 +84,10 @@ public class Get06 extends HerokuAppBaseUrl {
         softAssert.assertEquals(jsonPath.getString("firstname"),"Josh","firstname uyuşmadı");
         softAssert.assertEquals(jsonPath.getString("lastname"),"Allen","lastname uyuşmadı");
         softAssert.assertEquals(jsonPath.getInt("totalprice"),111,"totalprice uyuşmadı");
-        softAssert.assertTrue(jsonPath.getBoolean("depositpaid"));
+        softAssert.assertTrue(jsonPath.getBoolean("depositpaid"),"false");
+        softAssert.assertEquals(jsonPath.getString("bookingdates.checkin"),"2018-01-01","checkin uyuşmadı");
+        softAssert.assertEquals(jsonPath.getString("bookingdates.checkout"),"2019-01-01","checkout uyuşmadı");
+        softAssert.assertEquals(jsonPath.getString("additionalneeds"),"super bowls","additionalneeds uyuşmadı");
         //3. assertAll() methodunu kullan
         softAssert.assertAll();
     }
