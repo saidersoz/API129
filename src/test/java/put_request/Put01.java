@@ -1,8 +1,8 @@
 package put_request;
 
 import base_urls.JsonPlaceHolderBaseUrl;
-import org.junit.Test;
 import io.restassured.response.Response;
+import org.junit.Test;
 import test_data.JsonPlaceHolderTestData;
 
 import java.util.HashMap;
@@ -12,26 +12,25 @@ import static io.restassured.RestAssured.given;
 import static org.junit.Assert.assertEquals;
 
 public class Put01 extends JsonPlaceHolderBaseUrl {
-
-    /*
+         /*
         Given
-           1) https://jsonplaceholder.typicode.com/todos/198
-           2) {
+	        1) https://jsonplaceholder.typicode.com/todos/198
+	        2) {
                  "userId": 21,
                  "title": "Wash the dishes",
                  "completed": false
                }
         When
-         I send PUT Request to the Url
-       Then
-             Status code is 200
-             And response body is like   {
-                               "userId": 21,
-                               "title": "Wash the dishes",
-                               "completed": false
-                               "id": 198
-                              }
-      */
+	 		I send PUT Request to the Url
+	    Then
+	   	   Status code is 200
+	   	   And response body is like   {
+									    "userId": 21,
+									    "title": "Wash the dishes",
+									    "completed": false
+									    "id": 198
+									   }
+     */
 
     @Test
     public void put01() {
@@ -50,7 +49,7 @@ public class Put01 extends JsonPlaceHolderBaseUrl {
         response.prettyPrint();
 
         //Do assertion
-        Map<String, Object> actualData = response.as(HashMap.class);
+        Map<String, Object> actualData = response.as(HashMap.class);//De-Serialization -> Json to Java
         System.out.println("actualData = " + actualData);
 
         assertEquals(200, response.statusCode());
@@ -66,15 +65,16 @@ public class Put01 extends JsonPlaceHolderBaseUrl {
         spec.pathParams("first", "todos", "second", 198);
 
         //Set the expected data
-        Map<String, Object> expectedData = new JsonPlaceHolderTestData()//JsonPlaceHolderTestData classında bulunan expectedDataMapMethod'unu çağırarak expectedData'yı oluşturduk.
-                .expectedDataMapMethod(21, "Wash the dishes", false);
+        Map<String , Object> expectedData = new JsonPlaceHolderTestData().expectedDataMapMethod(21,"Wash the dishes",false);
+        System.out.println("expectedData = " + expectedData);
 
         //Send the request and get the response
         Response response = given(spec).body(expectedData).put("{first}/{second}");
         response.prettyPrint();
 
         //Do assertion
-        Map<String, Object> actualData = response.as(HashMap.class);//De-Serialization --> Jason to Java
+        Map<String, Object> actualData = response.as(HashMap.class);//De-Serialization -> Json to Java
+        System.out.println("actualData = " + actualData);
 
         assertEquals(200, response.statusCode());
         assertEquals(expectedData.get("completed"), actualData.get("completed"));
