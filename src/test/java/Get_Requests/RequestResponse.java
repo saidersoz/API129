@@ -6,55 +6,53 @@ import static io.restassured.RestAssured.given;
 
 public class RequestResponse {
 
+    /*
+    1) Postman manual test için kullanılır
+    2) API otomasyonu için Rest-Assured Library kullanıyoruz
+    3) Otomasyon kodlarının yazımı için şu adımların izlenmesi gerekir:
+        a) Gereksinimleri anlama
+        b) Test Case'i yazma:
+            -Test yazmak için 'Gherkin Language' kullanıyoruz.
+            x) Given: Ön koşullar --> Enpoint, Body ...
+            y) When: Yapılacak işlemler --> Get, Put, Delete ...
+            z) Then: Dönütler --> Assertion, Close ...
+            t) And:  Art arda kullanılan aynı işlemler için and kullanılır
+        c) Otomasyon kolarının yazma:
+            i) Set the URL --> Endpoint'i kur
+            ii) Set the expected data --> Beklenen veriyi kur
+            iii) Send the request and get the response --> Request yolla, response al
+            iv) Do Assertion --> Doğrulama yap
+     */
+
     public static void main(String[] args) {
 
-        /*
-        1) Postman manuel test için kullanılır.
-        2) Otomasyon için "Rest-Assured Library" kullanıyoruz.
-        3) Otomasyonu yazabilmek için şu adımların izlenmesi gerekir.
-               3.1) Gereksinimleri anlama.
-               3.2) Test Case yazma.
-                    --> Test yazmak için Gherkin Language kullanılır.
-                    a)Given ==> Ön koşullar (Url, Body...)
-                    b)When ==> Yapılacak işlemler (Get, Put, Post, Request...)
-                    c)Then ==> Dönütler, çıktılar (Assertion, Close...)
-                    d)End ==> Ard arda yapılan aynı çoklu işlemleri bağlamak için kullanılır
-               3.3) Otomasyon kodlarını yazma.
-                    a) Set the url (endpoint'i kur)
-                    b) Set the expected data (beklenen veriyi kur)
-                    c) Send the request and get the response (request'i gönder ve response'ı al)
-                    d) Do assertion (Doğrulama yap)
-         */
+        //Get request nasıl yapılır:
+        String endPoint = "https://petstore.swagger.io/v2/pet/9829946";
+        Response response = given().get(endPoint);//io.restassured.RestAssured.given;
+        //response.prettyPrint();//prettyPrint() methodu response'ı consola yazdırır
 
-        //Get Request nasıl yapılır ?
-        String url = "https://petstore.swagger.io/v2/pet/185321664841818";
-        Response respone = given().get(url); //import static io.restassured.RestAssured.given;
-        respone.prettyPrint(); //prettyPrint() methodu ile response'i konsola yazdırdık.
+        //Status code nasıl yazdırılır:
+        System.out.println("Status Code: "+response.statusCode());
 
-        //Status code nasıl yazdırılır ?
-        System.err.println("Status Code : " + respone.statusCode()); // Status Code : 200
+        //Content Type nasıl yazdırılır:
+        System.out.println("Content Type: "+response.contentType());
 
-        //Content type nasıl yazdırılır ?
-        System.err.println("Content Type : " + respone.contentType()); // Content Type : application/json
+        //Status Line nasıl yazdırılır:
+        System.out.println("Status Line: "+response.statusLine());
 
-        //Status Line nasıl yazdırılır ?
-        System.err.println("Status Line : " + respone.statusLine()); // Status Line : HTTP/1.1 200 OK
+        //Header nasıl yazdırılır:
+        System.out.println(response.header("Server"));
+        System.out.println(response.header("Connection"));
+        System.out.println(response.header("Access-Control-Allow-Methods"));
+        System.out.println(response.header("Date"));
 
+        //Headers nasıl yazdırılır:
+        System.out.println("------");
+        System.out.println(response.headers());
 
-        //Header nasıl yazdırılır ?
-        System.err.println("Header : " + respone.header("Date")); // Tue, 23 May 2023 18:52:02 GMT
-        System.err.println("Header : " + respone.header("Connection")); // keep-alive
-        System.err.println("Header : " + respone.header("Server")); // Jetty(9.2.9.v20150224)
-        System.err.println("Header : " + respone.header("Transfer-Encoding")); // chunked
-
-
-        //Headers nasıl yazdırılır ?
-        System.out.println(respone.headers());
-
-        //Time nasıl yazdırılır ?
-        System.out.println("\ntime :"+respone.time());
+        //Time nasıl yazdırılır:
+        System.out.println("\nTime: "+response.getTime());
 
 
     }
-
 }
