@@ -8,6 +8,7 @@ import pojos.Country;
 import pojos.State;
 import utils.ObjectMapperUtils;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,10 +75,10 @@ public class PostCountry extends GmiBankBaseUrl {
         spec.pathParams("first", "api", "second", "tp-countries");
 
         //Set the expected data
-        State state1 = new State(1, "Apple");
-        State state2 = new State(2, "Orange");
-        State state3 = new State(3, "Pear");
-        List<State> stateList = new ArrayList<>();
+        Taskbar.State state1 = new Taskbar.State(1, "Apple");
+        Taskbar.State state2 = new Taskbar.State(2, "Orange");
+        Taskbar.State state3 = new Taskbar.State(3, "Pear");
+        List<Taskbar.State> stateList = new ArrayList<>();
         stateList.add(state1);
         stateList.add(state2);
         stateList.add(state3);
