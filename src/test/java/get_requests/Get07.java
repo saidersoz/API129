@@ -1,7 +1,15 @@
 package get_requests;
 
 import base_urls.JsonPlaceHolderBaseUrl;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
 import org.junit.Test;
+
+import java.util.List;
+
+import static io.restassured.RestAssured.given;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class Get07 extends JsonPlaceHolderBaseUrl {
 
@@ -23,6 +31,39 @@ public class Get07 extends JsonPlaceHolderBaseUrl {
 
     @Test
     public void get07() {
+        //Set the URL
+        spec.pathParam("first", "todos");
+
+        //Set the expected data
+
+        //Set the request and get the response
+        Response response = given(spec).get("first");
+        System.out.println(response.prettyPrint());
+
+        //Do Assertion
+        assertEquals(200, response.statusCode());
+
+        JsonPath jsonPath = response.jsonPath();
+        List<Object> list = jsonPath.getList("findAll{it.id>190}"); //Groovy language ==> Java temelli programlama dili
+
+        //Print all ids greater than 190 on the console
+        System.out.println(list);
+
+        //Assert that there are 10 ids greater than 190
+        assertEquals(10, list.size());
+
+        //Print all userIds whose ids are less than 5 on the console
+        List<Integer> userIdList = jsonPath.getList("findAll{it.id<5}.userId");
+
+        //Assert that the number of userIds whose ids are less than 5 is 4
+        assertEquals(4,userIdList.size());
+
+        //Print all titles whose ids are less than 5
+        List<String> titleList = jsonPath.getList("findAll{it.id<5}.title");
+        System.out.println(titleList);
+
+        //Assert that "delectus aut autem" is one of the titles whose id is less than 5
+        assertTrue(titleList.contains("delectus aut autem"));
 
     }
 }
