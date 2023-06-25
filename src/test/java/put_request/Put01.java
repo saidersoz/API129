@@ -71,7 +71,7 @@ public class Put01 extends JsonPlaceHolderBaseUrl {
         //Send the request and get the response
         Response response = given(spec).body(expectedData).put("{first}/{second}");
         response.prettyPrint();
-
+//So asser
         //Do assertion
         Map<String, Object> actualData = response.as(HashMap.class);//De-Serialization -> Json to Java
         System.out.println("actualData = " + actualData);
